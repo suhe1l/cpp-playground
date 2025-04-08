@@ -1,0 +1,27 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build C++ File",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-g",
+                "-std=c++20",
+                "-I${workspaceFolder}/include",      // Include path for headers
+                "${workspaceFolder}/main.cpp",       // Main file
+                "${workspaceFolder}/src/*.cpp",      // All source files in src/
+                "-o",
+                "${workspaceFolder}/main.exe"        // Output executable
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": ["$gcc"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
