@@ -1,38 +1,31 @@
+// Program to explain function prototypes
+// Basically, with prototype, the actual function can be anywhere in the code,
+// even after a function call. But only if there is a prototype. 
+
 #include <iostream>
-#include <array>
+#include <iomanip>
 using namespace std;
 
-//Function to reverse the array (template to work with any size)
-template<size_t N>
-void reverseArray(array<int, N>& arr) {
-    int size = arr.size();
-    for (int i = 0; i < N / 2; i++) {
-        int temp = arr[i];
-        arr[i] = arr[N - 1 - i];
-        arr[N - 1 - i] = temp;
-    }
-}
-
-//Function to print the array (template)
-template<size_t N>
-void printArray(const array<int, N>& arr) {
-    for (size_t i = 0; i < N; i++) {
-        cout << arr[i] << " ";
-    }
-    cout << endl;
-}
+int maximum(int x, int y, int z); //Function prototype
 
 int main() {
-    //create an array of 5 integers
-    array<int, 5> arr = {1, 2, 3, 4, 5};
+	cout << "Enter three integer values: ";
+	int int1, int2, int3;
+	cin >> int1 >> int2 >> int3;
+	//Invoke maximum
+	cout << "The maximum integer value is: "
+	<< maximum(int1, int2, int3) << endl;
+}
 
-    cout << "Original array: " ;
-    printArray(arr);
-
-    reverseArray(arr);
-
-    cout << "Reversed array: ";
-    printArray(arr);
-
-    return 0;
+// returns the largest of the three integers
+int maximum(int x, int y, int z) {
+	int maximumValue{x}; //assume x is the largest to start
+	// determine whether y is greater than maximumValue
+	if (y > maximumValue) {
+		maximumValue = y; // make y the new maximumValue
+	}
+	if(z > maximumValue) {
+		maximumValue = z; // make z maximum value
+	}
+	return maximumValue;
 }
