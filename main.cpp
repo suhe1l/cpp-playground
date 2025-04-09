@@ -1,31 +1,19 @@
-// Program to explain function prototypes
-// Basically, with prototype, the actual function can be anywhere in the code,
-// even after a function call. But only if there is a prototype. 
-
+// Program: Shifting scaled integers to produce 'random' numbers
 #include <iostream>
 #include <iomanip>
+#include <cstdlib>
+
 using namespace std;
 
-int maximum(int x, int y, int z); //Function prototype
-
 int main() {
-	cout << "Enter three integer values: ";
-	int int1, int2, int3;
-	cin >> int1 >> int2 >> int3;
-	//Invoke maximum
-	cout << "The maximum integer value is: "
-	<< maximum(int1, int2, int3) << endl;
-}
+	//loop 20 times
+	for (unsigned int counter{1}; counter <= 20; ++counter) {
+		//pick random number from 1 to 6 and output it
+		cout << setw(10) << (1 + rand() % 6);
 
-// returns the largest of the three integers
-int maximum(int x, int y, int z) {
-	int maximumValue{x}; //assume x is the largest to start
-	// determine whether y is greater than maximumValue
-	if (y > maximumValue) {
-		maximumValue = y; // make y the new maximumValue
+		//if counter is divisible by 5, start a new line of output
+		if(counter % 5 == 0) {
+			cout << endl;
+		}
 	}
-	if(z > maximumValue) {
-		maximumValue = z; // make z maximum value
-	}
-	return maximumValue;
 }
