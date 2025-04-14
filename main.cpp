@@ -1,24 +1,30 @@
-//Program: Checking whether a number is odd or even
+// Program: Asking for two numbers and checking which one is larger
 #include <iostream>
 using namespace std;
 
-// using a string so that we can return a value instead of just printing 
-// the value, so that we can use it again in the program.
-string numberChecker(int x) {
-	if ( x % 2 == 0 ) {
-		return "even";
+int max (int a, int b) {
+	if ( a > b ) {
+		return a;
 	} else {
-		return "odd";
+		return b;
 	}
 }
 
-int main() {
-	int number;
-	cout << "Enter a number: ";
-	cin >> number;
+int main () {
+	int firstNumber, secondNumber;
+
+	cout << "You are required to enter two integers.\nEnter the first one: ";
+	cin >> firstNumber;
+
+	cout << "Nice! Now enter the second one: ";
+	cin >> secondNumber;
 	
-	string status = numberChecker(number); // stored in the variable called status
-	cout << "The number is " << status << endl;
+	if (firstNumber == secondNumber) {
+		cout << "Both numbers are equal: " << firstNumber << endl;
+	} else {
+		int largerNumber = max(firstNumber, secondNumber);
+		cout << "The larger of the two is: " << largerNumber;
+	}
 
 	return 0;
 }
