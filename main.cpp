@@ -1,16 +1,22 @@
-// Simple introduction to cast operation. 
+// Trick math question testing the division and modulus operator
 #include <iostream>
 
 int main() {
-    char userChar;
+    int number;
     
-    // Prompt user for input
-    std::cout << "Enter a character: ";
-    std::cin >> userChar;
+    std::cout << "Enter a five-digit integer: ";
+    std::cin >> number;
 
-    // Print integer equivalent using static_cast
-    std::cout << "The integer equivalent of '" << userChar << "' is: " 
-              << static_cast<int>(userChar) << std::endl;
+    // Extract digits using division and modulus
+    int first = number / 10000;
+    int second = (number / 1000) % 10;
+    int third = (number / 100) % 10;
+    int fourth = (number / 10) % 10;
+    int fifth = number % 10;
+
+    // Print separated digits
+    std::cout << first << "   " << second << "   " << third << "   " 
+              << fourth << "   " << fifth << std::endl;
 
     return 0;
 }
