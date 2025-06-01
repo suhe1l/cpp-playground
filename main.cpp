@@ -1,43 +1,32 @@
-// Simple BMI calculator
+// Sales-Commission Calculator
 #include <iostream>
 #include <iomanip>
 using namespace std;
 
 int main() {
-    double weight, height, bmi;
-    int choice;
-
-    cout << "Select measurement system:\n";
-    cout << "1. Metric (kg/m)\n";
-    cout << "2. Imperial (lbs/in)\n";
-    cout << "Enter choice (1 or 2): ";
-    cin >> choice;
-
-    if (choice == 1) {
-        cout << "Enter weight (kg): ";
-        cin >> weight;
-        cout << "Enter height (meters): ";
-        cin >> height;
-        bmi = weight / (height * height);
-    } else if (choice == 2) {
-        cout << "Enter weight (lbs): ";
-        cin >> weight;
-        cout << "Enter height (inches): ";
-        cin >> height;
-        bmi = (weight * 703) / (height * height);
-    } else {
-        cout << "Invalid selection!";
-        return 1;
-    }
-
+    const double BASE_SALARY = 200.00;
+    const double COMMISSION_RATE = 0.09;  // 9%
+    double grossSales;
+    double totalEarnings;
+    
+    // Set output formatting for currency
     cout << fixed << setprecision(2);
-    cout << "\nYour BMI is: " << bmi << "\n";
-
-    cout << "BMI Categories:\n";
-    cout << "Underweight: less than 18.5\n";
-    cout << "Normal: between 18.5 and 24.9\n";
-    cout << "Overweight: bewteen 25 and 29.9\n";
-    cout << "Obese: 30 or greater\n";
-
+    
+    // Input and process sales figures
+    cout << "Enter sales in dollars (-1 to end): ";
+    cin >> grossSales;
+    
+    while (grossSales != -1) {
+        // Calculate total earnings
+        totalEarnings = BASE_SALARY + (grossSales * COMMISSION_RATE);
+        
+        // Display salary
+        cout << "Salary is: $" << totalEarnings << endl;
+        
+        // Get next input
+        cout << "Enter sales in dollars (-1 to end): ";
+        cin >> grossSales;
+    }
+    
     return 0;
 }
