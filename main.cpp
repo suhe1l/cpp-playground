@@ -2,39 +2,59 @@
 using namespace std;
 
 // ITERATIVE APPROACH
-long factorialIterative(int n) {
+long powerIterative(int base, int exponent) {
     long result = 1;
     
-    // Use a loop to multiply all numbers from 1 to n
-    for (int i = 1; i <= n; i++) {
-        result *= i;
+    // Multiply base by itself exponent times
+    for (int i = 0; i < exponent; i++) {
+        result *= base;
     }
     
     return result;
 }
 
 // RECURSIVE APPROACH
-long factorialRecursive(int n) {
-    // Base case: factorial of 0 or 1 is 1
-    if (n <= 1) {
+long powerRecursive(int base, int exponent) {
+    // Base case: any number to power 0 is 1
+    if (exponent == 0) {
         return 1;
     }
     
-    // Recursive case: n! = n * (n-1)!
-    return n * factorialRecursive(n - 1);
+    // Recursive case: base^n = base * base^(n-1)
+    return base * powerRecursive(base, exponent - 1);
+}
+
+// OPTIMIZED RECURSIVE APPROACH (using divide and conquer)
+long powerRecursiveOptimized(int base, int exponent) {
+    // Base case
+    if (exponent == 0) {
+        return 1;
+    }
+    
+    // If exponent is even: base^n = (base^(n/2))^2
+    if (exponent % 2 == 0) {
+        long halfPower = powerRecursiveOptimized(base, exponent / 2);
+        return halfPower * halfPower;
+    }
+    // If exponent is odd: base^n = base * base^(n-1)
+    else {
+        return base * powerRecursiveOptimized(base, exponent - 1);
+    }
 }
 
 int main() {
-    int number = 5;
+    int base = 2;
+    int exponent = 10;
     
-    cout << "Calculating factorial of " << number << ":" << endl;
-    cout << "Iterative result: " << factorialIterative(number) << endl;
-    cout << "Recursive result: " << factorialRecursive(number) << endl;
+    cout << "Calculating " << base << "^" << exponent << ":" << endl;
+    cout << "Iterative result: " << powerIterative(base, exponent) << endl;
+    cout << "Recursive result: " << powerRecursive(base, exponent) << endl;
+    cout << "Optimized recursive: " << powerRecursiveOptimized(base, exponent) << endl;
     
-    // Show step-by-step for understanding
-    cout << "\nStep-by-step breakdown:" << endl;
-    cout << "5! = 5 × 4 × 3 × 2 × 1 = 120" << endl;
-    cout << "Recursive: 5 × factorial(4) → 5 × 24 = 120" << endl;
+    cout << "\nStep-by-step for 2^4:" << endl;
+    cout << "Iterative: 1 x 2 x 2 x 2 x 2 = 16" << endl;
+    cout << "Recursive: 2 x power(2,3) = 2 x 8 = 16" << endl;
+    cout << "Optimized: power(2,4) = power(2,2)^2 = 4^2 = 16" << endl;
     
     return 0;
 }
