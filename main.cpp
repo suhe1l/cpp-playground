@@ -1,40 +1,42 @@
+// Simple BMI calculator
 #include <iostream>
 using namespace std;
 
-// ITERATIVE APPROACH
-long factorialIterative(int n) {
-    long result = 1;
-    
-    // Use a loop to multiply all numbers from 1 to n
-    for (int i = 1; i <= n; i++) {
-        result *= i;
-    }
-    
-    return result;
-}
+int main() {
+    double weight, height, bmi;
+    int choice;
 
-// RECURSIVE APPROACH
-long factorialRecursive(int n) {
-    // Base case: factorial of 0 or 1 is 1
-    if (n <= 1) {
+    cout << "Select measurement system:\n";
+    cout << "1. Metric (kg/m)\n";
+    cout << "2. Imperial (lbs/in)\n";
+    cout << "Enter choice (1 or 2): ";
+    cin >> choice;
+
+    if (choice == 1) {
+        cout << "Enter weight (kg): ";
+        cin >> weight;
+        cout << "Enter height (meters): ";
+        cin >> height;
+        bmi = weight / (height * height);
+    } else if (choice == 2) {
+        cout << "Enter weight (lbs): ";
+        cin >> weight;
+        cout << "Enter height (inches): ";
+        cin >> height;
+        bmi = (weight * 703) / (height * height);
+    } else {
+        cout << "Invalid selection!";
         return 1;
     }
-    
-    // Recursive case: n! = n * (n-1)!
-    return n * factorialRecursive(n - 1);
-}
 
-int main() {
-    int number = 5;
-    
-    cout << "Calculating factorial of " << number << ":" << endl;
-    cout << "Iterative result: " << factorialIterative(number) << endl;
-    cout << "Recursive result: " << factorialRecursive(number) << endl;
-    
-    // Show step-by-step for understanding
-    cout << "\nStep-by-step breakdown:" << endl;
-    cout << "5! = 5 x 4 x 3 x 2 x 1 = 120" << endl;
-    cout << "Recursive: 5 x factorial(4) → 5 x 24 = 120" << endl;
-    
+    cout << fixed << setprecision(2);
+    cout << "\nYour BMI is: " << bmi << "\n";
+
+    cout << "BMI Categories:\n";
+    cout << "Underweight: less than 18.5\n";
+    cout << "Normal: between 18.5 and 24.9\n";
+    cout << "Overweight: bewteen 25 and 29.9\n";
+    cout << "Obese: 30 or greater\n";
+
     return 0;
 }
